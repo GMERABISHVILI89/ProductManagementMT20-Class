@@ -42,7 +42,22 @@ namespace ProductManagementMT20.Controllers
         public async Task<IActionResult> AdminOnlyPage()
         {
             var users = await _userManager.Users.ToListAsync();
-            return View(users); 
+            var userRoles = new List<UserWithRolesViewModel>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                userRoles.Add(new UserWithRolesViewModel
+                {
+                    Id = user.Id,
+                    Email = user.Email!,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Roles = roles.ToList()
+                });
+            }
+
+            return View(userRoles);
         }
 
 
