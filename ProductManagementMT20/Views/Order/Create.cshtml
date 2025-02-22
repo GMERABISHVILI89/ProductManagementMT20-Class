@@ -1,0 +1,21 @@
+﻿@model ProductManagementMT20.Models.VM.OrderViewModel
+
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<h1>Create Order</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Select Products</label>
+        <select name="ProductIds" multiple class="form-control">
+            @foreach (var product in ViewBag.Products)
+            {
+                <option value="@product.Id">@product.Name - $@product.Price</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

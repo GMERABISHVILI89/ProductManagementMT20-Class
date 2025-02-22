@@ -1,0 +1,37 @@
+﻿@model List<ProductManagementMT20.Models.Entities.Order>
+
+@{
+    ViewData["Title"] = "Order Index";
+}
+
+<h1>Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Products</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>
+                    @foreach (var orderProduct in order.Products)
+                    {
+                        <div>@orderProduct.Name</div>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Order", new { id = order.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Order", new { id = order.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Order")" class="btn btn-success">Create New Order</a>

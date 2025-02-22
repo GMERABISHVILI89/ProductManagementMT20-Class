@@ -1,0 +1,21 @@
+﻿@using ProductManagementMT20.Models.Entities
+@model ApplicationUser
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h2>Delete User</h2>
+
+<p>Are you sure you want to delete this user?</p>
+
+<ul>
+    <li><strong>Email:</strong> @Model.Email</li>
+    <li><strong>First Name:</strong> @Model.FirstName</li>
+    <li><strong>Last Name:</strong> @Model.LastName</li>
+</ul>
+
+<form asp-action="DeleteConfirmed" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="AdminOnlyPage" asp-controller="Home" class="btn btn-secondary">Cancel</a>
+</form>

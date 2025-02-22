@@ -1,0 +1,27 @@
+﻿@using ProductManagementMT20.Models.Entities
+@model ApplicationUser
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label>First Name</label>
+        <input asp-for="FirstName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input asp-for="LastName" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="AdminOnlyPage" asp-controller="Home" class="btn btn-secondary">Cancel</a>
+</form>

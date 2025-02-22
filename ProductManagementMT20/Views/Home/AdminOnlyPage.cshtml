@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProductManagementMT20.Models.Entities
+@model List<ApplicationUser>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h2>User Management</h2>
+
+<!-- Add User Button -->
+<a asp-action="Register" asp-controller="Home" class="btn btn-primary mb-3">Add New User</a>
+
+<!-- User List Table -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>Registration Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@(user is IdentityUser ? "Admin" : "User")</td>
+                <td>@user.RegistrationDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
